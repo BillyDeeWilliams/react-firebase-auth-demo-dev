@@ -1,21 +1,37 @@
+import React from "react"
+import Signup from "./Signup";
+import { Container } from "react-bootstrap"
+import { AuthProvider } from "../contexts/AuthContext"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Dashboard  from "./Dashboard";
+import Login from "./Login";
+import PrivateRoute from './PrivateRoute'
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code><source />
-          <component></component>s/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+       
+      <Container className="d-flex
+                            align-items-center
+                            justify-content-center"
+                  style={{minHeight: "100vh"}}>
+        <div  className="w-100"
+              style={{maxWidth: "400px"}}>
+
+          <Router>
+          <AuthProvider>
+            <Routes>
+              <Route exact path='/' element={<PrivateRoute/>}>
+                <Route exact path='/' element={<Dashboard/>}/>
+              </Route>
+              <Route exact path="/signup" element={<Signup/>} />
+              <Route exact path="/login" element={<Login/>} />
+
+              </Routes>
+          </AuthProvider>  
+          </Router>   
+        </div> 
+      </Container>
+    
   );
 }
 
