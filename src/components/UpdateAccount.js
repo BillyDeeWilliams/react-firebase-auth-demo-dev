@@ -134,7 +134,7 @@ export default function UpdateAccount() {
               <Button disabled={uploading || imageFile == null} onClick={handleImageUpload} className="bg-secondary w-20" type="button">
                 Upload
               </Button>
-              <h6>{uploading  && <span>{upProgress} %</span>}</h6>
+              <h6>{uploading  && <progress id="file" value={upProgress} max="100">{upProgress} %</progress>}</h6>
             </Form.Group>
             
             <Button disabled={loading} className="w-100 mt-3" type="submit">
